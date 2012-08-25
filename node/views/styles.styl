@@ -1,0 +1,99 @@
+// ============= UTILS ==============
+corner-each(tl, tr, br, bl)
+  -moz-border-radius-topleft tl
+  -webkit-border-top-left-radius tl
+  border-top-left-radius tl
+
+  -moz-border-radius-topright tr
+  -webkit-border-top-right-radius tr
+  border-top-right-radius tr
+
+  -moz-border-radius-bottomleft bl
+  -webkit-border-bottom-left-radius bl
+  border-bottom-left-radius bl
+
+  -moz-border-radius-bottomright br
+  -webkit-border-bottom-right-radius br
+  border-bottom-right-radius br
+
+corner(px)
+  corner-each(px,px,px,px)
+
+corner-top(px)
+  corner-each(px,px,0,0)
+
+corner-bottom(px)
+  corner-each(0,0,px,px)
+
+corner-left(px)
+  corner-each(px,0,0,px)
+
+corner-right(px)
+  corner-each(0,px,px,0)
+
+// ============= UTILS ==============
+
+*
+  margin: 0
+  padding: 0
+
+a
+  text-decoration: none
+
+li
+  display: block
+
+body
+  font-family: "Lucida Grande",Arial,Helvetica,Verdana,sans-serif
+  overflow: auto 
+  background-color: #DDDDDD
+
+.ajaxloader
+  width: 16px
+  height: 16px
+  background: url(/images/ajax-loader.gif) 0 0 no-repeat
+
+label
+  display: inline-block
+  width: 200px
+
+.element *, .evaluacion *
+  vertical-align: middle
+
+input
+  display: inline-block
+  margin: 10px 0
+  height: 32px
+  border: 1px solid black
+  width: 300px
+
+textarea
+  display: inline-block
+  margin: 10px 0
+  width: 300px
+  height: 80px  
+
+select
+  display: inline-block
+  margin: 10px 0
+  width: 300px
+
+#wrapper
+  margin: 20px 0 20px 0
+
+#main
+  margin: 4px 0 20px 
+  padding: 20px
+
+header
+  border: 1px solid #edeaec 
+  padding: 20px;
+
+.list_header
+  margin: 10px 0 10px 0;
+
+.list_header h1
+  float: left
+  
+.list_header a
+  float: right;

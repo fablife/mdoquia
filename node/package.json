@@ -1,0 +1,24 @@
+{
+  "name": "mdoquia",
+  "description": "Memorias Digitales para el Museo de Antioquia",
+  "version": "0.0.1",
+  "homepage": "http://unloquer.org",
+  "author": "Un/loquer",
+  "repository": "",
+  "engines": {
+    "node": ">= 0.6.21"
+  },
+  "dependencies": {
+    "express": "2.5.10",
+    "jade": "0.26.3",	
+    "stylus": "0.28.2",
+    "socket.io": "0.9.6",
+    "mongoose": "3.0.3",
+    "gzippo": "0.1.7"
+  },
+  "devDependencies": {
+    "mocha": "1.4.0",
+    "superagent": "0.8.1",
+    "should": "1.1.0"
+  }
+}
