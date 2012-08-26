@@ -128,9 +128,6 @@ h1
   height: 100px
   float: left
   display: inline
-  -webkit-box-shadow:0 0 15px #ffffff
-  -moz-box-shadow: 0 0 15px #ffffff
-  box-shadow:0 0 15px #ffffff
 
 .image_list img:hover
   -webkit-box-shadow:0 0 15px #000
@@ -138,6 +135,62 @@ h1
   box-shadow:0 0 15px #000
 
 #image_view
+  position: absolute
   display: none
-  width: 800px
   padding: 10px
+  z-index: 9999
+  top: 30px
+  left: 180px
+
+#image_area
+  -webkit-box-shadow:0 0 15px #ffffff
+  -moz-box-shadow: 0 0 15px #ffffff
+  box-shadow:0 0 15px #ffffff
+
+#visible_img
+  margin: 0px auto
+  width: 640px
+  -webkit-box-shadow:0 0 15px #ffffff
+  -moz-box-shadow: 0 0 15px #ffffff
+  box-shadow:0 0 15px #ffffff
+  
+#commands_area
+  background-color: whitesmoke 
+  opacity: 0.7
+  height: 30px
+  padding: 10px
+ 
+.nav_buttons
+  padding: 5px 10px 5px 10px
+  width: 100px
+
+.nav_buttons_act
+  margin: 0 20px 0 20px
+  padding: 5px 10px 5px 10px
+  width: 100px
+
+.left
+  margin-left: 10px
+  margin-right: 60px
+
+.right
+  margin-right: 10px
+  margin-left: 60px
+
+.nav_buttons:hover, .nav_buttons_act:hover
+  color:#006577
+  outline:none;
+  transition: all 0.15s ease-in-out;
+  -webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  box-shadow: 0 0 5px #006577
+  -webkit-box-shadow: 0 0 5px #006577
+  -moz-box-shadow: 0 0 5px #006577
+  border-radius:3px;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+
+#borra,#previa
+  float: left;
+#aprueba,#proxima
+  float: right;

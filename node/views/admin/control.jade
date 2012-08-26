@@ -4,14 +4,12 @@
     h1 Control de imagenes
 
     .image_list
+      -var cnt=0
       ul
       each img in imagenes
         li
-          img(src="#{img.path}")
+          img(src="#{img.path}",alt="#{img.id}")
+          input(type="hidden",id="#{img.id}",value="#{cnt}")
+          - cnt++
 
 
-#image_view
-  #image_area
-  #commands_area    
-    button(id="borra", value="Borra")
-    button(id="aprueba", value="Aprueba")

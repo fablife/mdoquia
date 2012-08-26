@@ -5,7 +5,7 @@ html
     link(rel= 'stylesheet', href= '/styles.css', type= 'text/css')
     link(rel= 'stylesheet', href= '/stylesheets/jquery.jgrowl.css', type= 'text/css')
     
-    title Red Artes Visuales
+    title Memorias Digitales - Museo De Antioquia
   body
     .root-wrapper
     header
@@ -18,5 +18,16 @@ html
       article#main
         section.content
           != body
+
+#image_view
+  #image_area
+    img(id="visible_img")
+  #commands_area    
+    button(type="button",id="previa", class="nav_buttons left") Previa 
+    button(type="button",id="borra", class="nav_buttons_act") Borra
+    button(type="button",id="proxima", class="nav_buttons right") Próxima 
+    button(type="button",id="aprueba", class="nav_buttons_act") Aprueba
+
     script(type="text/javascript", src="/javascripts/thirdparty/jquery/jquery-1.7.min.js")
     script(type="text/javascript", src="/javascripts/thirdparty/jquery.jgrowl_minimized.js")
+    script(type="text/javascript", src="/app.js")

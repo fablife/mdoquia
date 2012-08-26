@@ -1,106 +1,43 @@
-jQuery.ready(function($) {
-    var FormValidator= function($ctx, fields) {
-	this.fields= fields;
-	this.valid= false;
-	this.$ctx= $ctx;
-    };
-    
-    FormValidator.prototype.validate= function(opts) {
-	var exclude= opts.exclude||[];
-	var validators= {
-	    'presence': function(val) {
-		if(val == '' || !val) {
-		    return false
-		}
-		return true
-	    }
-	};
+jQuery(document).ready(function($) {
+  var current_image = 0;
+  $('.image_list img').on('click',function(e) {
+      
+    var overlayDiv = document.createElement("div");
+    overlayDiv.id = "overlayDiv";
+    overlayDiv.style.cssText = "position:absolute; top:0; right:0; width:" + screen.width + "px; height:" + screen.height + "px; background-color: #000000; opacity:0.7";
+    document.getElementsByTagName("body")[0].appendChild(overlayDiv);
 
-	this.$ctx.find(".error").remove();
-	var fields= this.fields;
-	for(var f in fields) {
-	    var val= this.$ctx.find(fields[f].find).val();
-	    if(fields[f].validate && fields[f].validate.length) {
-		for(var i in fields[f].validate) {
-		    if(exclude.indexOf(f) > -1) {
-			break;
-		    }
-		    var test= fields[f].validate[i];
-		    if(!validators[test](val)) {
-			this.$ctx.find(fields[f].find)
-			.before("<p class='error'>* campo obligatorio</p>");
-			return false;
-		    }
-		}
-	    }
-	    fields[f].data= val;
-	}
-	return true;
-    }
-    
-    FormValidator.prototype.getValidData= function(opts) {
-	var data;
-	opts= opts||{};
-	if(this.validate(opts)) {
-	    data= {};
-	    for(var f in this.fields) {
-		data[f]= this.fields[f].data;
-	    }
-	}
-	return data;
-    };
-    
-    var TallerBaseForm= new FormValidator($("#newmap"),
-	{
-	    'nombre': {
-		'find': 'input[name=name]',
-		'validate': ['presence']
-	    },
-	    'descripcion': {
-		'find': 'textarea[name=description]',
-		'validate': ['presence']
-	    }
-	}
-    );
+    var id=this.alt;
+    current_image=parseInt($('#'+id)[0].value);
+    $('#visible_img')[0].src=(this.src);
+    $('#visible_img')[0].alt=(this.alt);
+    $('#image_view').show('fast', function(e) {});
+  });  
 
-    var TallerForm= new FormValidator($("#newmap"),
-	{
-	    'nombre': {
-		'find': 'input[name=name]',
-		'validate': ['presence']
-	    },
-	    'descripcion': {
-		'find': 'textarea[name=description]',
-		'validate': ['presence']
-	    }
-	}
-    );
+  $('#aprueba').on('click',function(e) {
+        var img=$('#visible_img')[0].alt;
+        $.ajax({
+             type: "POST",
+             url: "/approve_image",
+             data: { id : img }
+        }).done(function(e) {
+           window.location.reload();
+  });
+    });
 
-    var Domain = function() {
-	var models = {
-	    Equipamiento: {
-		resource: '/equipamientos'
-	    },
-	    Taller: {
-		resource: '/talleres'
-	    },
-	    Participante: {
-		resource: '/participante'
-	    }
-	};
+  $('#previa').on('click',function(e) {
+    current_image--;
+    $('#visible_img')[0].src=$(".image_list img")[current_image].src;
+    $('#visible_img')[0].alt=$(".image_list img")[current_image].alt;
 
-	for(var model in models) {
-	    Domain[model] = {
-		find: function() {
-		},
-		create: function(data, callback) {
-		    $.post(models[model].resource, data, callback);
-		},
-		remove: function() {
-		},
-		update: function() {
-		}
-	    }
-	}
-    }
-})
+  });
+
+
+  $('#proxima').on('click',function(e) {
+    current_image++;
+    $('#visible_img')[0].src=$(".image_list img")[current_image].src;
+    $('#visible_img')[0].alt=$(".image_list img")[current_image].alt;
+      
+  });
+
+});
