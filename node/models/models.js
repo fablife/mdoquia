@@ -10,6 +10,12 @@ var Texto = new Schema({
 });
 mongoose.model('Texto', Texto);
 
+var Imagen = new Schema({
+  path  : { type: String },
+  checked : { type: Boolean , default: false}
+});
+
 module.exports= {
-  Texto: Texto
+  Texto: Texto,
+  Imagen: Imagen
 }

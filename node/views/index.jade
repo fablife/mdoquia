@@ -1,8 +1,8 @@
 h1 Manda dibujo
   form(action="/save_image", method="post", enctype="multipart/form-data")
-    input(type="file", name="manda_dibujo")
+    input(id="fileupload", type="file", name="manda_dibujo") 
     input(type="submit", name="submit", value="Manda")
 
   form(action="/save_text", method="POST")
-    textarea(name="texto")
+    textarea(name="texto") 
     input(type="submit", name="submitTexto", value="Manda texto")

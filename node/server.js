@@ -6,6 +6,11 @@ var fs = require('fs');
 var app = module.exports = express.createServer();
 app.db = require('./models/models');
 
+
+var publicdir = '/public';
+var urlprefix = '/images/capturas';
+var image_path = __dirname + publicdir + urlprefix;
+
 // Configuration
 function compile(str, path) {
     return stylus(str)
@@ -45,7 +50,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://173.230.141.159/mdoquia');
 var models = require('./models/models');
 var Texto = mongoose.model('Texto', models.Texto);
-
+var Imagen = mongoose.model('Imagen', models.Imagen);
 
 app.get('/', function(req, res) {
     res.render('index');
@@ -55,15 +60,32 @@ app.post('/save_image', function(req, res) {
   if ('POST' !== req.method) return ;
   var file = req.files.manda_dibujo;
   console.log('  uploaded : %s %skb', file.name, file.size / 1024 | 0);
-  var file_name = __dirname + '/public/images/capturas/' + new Date().getTime() + file.name;
+  var datesuffix = new Date().getTime() + file.name;
+  var file_name = image_path + datesuffix;
+  var url = urlprefix + datesuffix; 
   fs.readFile(req.files.manda_dibujo.path, function(err, data) {
     fs.writeFile(file_name, data, function (err) {
         if (err) {
           res.send("Upload failed!!!");
           throw err;
         }
-        console.log("New file saved as: " + file_name);
+        console.log("New file saved as: " + file_name + " with url: " + url);
+        var img = new Imagen({path: url});
+        img.save();
         res.send("Upload OK!");
+    });
+  });
+});
+
+
+app.get('/admin/control', function(req, res) {
+ Imagen.find({ checked: false}, function(err, files) {
+    console.log("Cargué " + files.length + " imagenes.");
+    res.render('admin/control', {
+      locals: {
+        imagenes: files,
+        image_dir: image_path
+      }
     });
   });
 });

@@ -61,7 +61,7 @@ label
   vertical-align: middle
 
 input
-  display: inline-block
+  display: block
   margin: 10px 0
   height: 32px
   border: 1px solid black
@@ -89,11 +89,55 @@ header
   border: 1px solid #edeaec 
   padding: 20px;
 
-.list_header
-  margin: 10px 0 10px 0;
+.header_area_top
+  background-color: #006577  
+  width: 100%
+  height: 110
+  text-align:center
 
-.list_header h1
-  float: left
+.header_area_bottom
+  background-color: #B0BF00
+  width: 100%
+  height:8px
+
+.menubar
+  background-color: #CCCCCC
+  width: 100%
+  height: 32px
+
+.content
+  width: 1200px
+  margin: auto
   
-.list_header a
-  float: right;
+h1
+  color: #006577
+
+.image_list ul
+  list-style-type: none
+  display: inline-block
+  float: left
+  margin: auto
+  width: 1165px
+
+.image_list li
+  display: inline
+  float: left
+
+.image_list img
+  width: 100px
+  height: 100px
+  float: left
+  display: inline
+  -webkit-box-shadow:0 0 15px #ffffff
+  -moz-box-shadow: 0 0 15px #ffffff
+  box-shadow:0 0 15px #ffffff
+
+.image_list img:hover
+  -webkit-box-shadow:0 0 15px #000
+  -moz-box-shadow: 0 0 15px #000
+  box-shadow:0 0 15px #000
+
+#image_view
+  display: none
+  width: 800px
+  padding: 10px

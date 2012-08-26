@@ -1,0 +1,17 @@
+#wrapper
+  
+  .content
+    h1 Control de imagenes
+
+    .image_list
+      ul
+      each img in imagenes
+        li
+          img(src="#{img.path}")
+
+
+#image_view
+  #image_area
+  #commands_area    
+    button(id="borra", value="Borra")
+    button(id="aprueba", value="Aprueba")
