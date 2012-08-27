@@ -31,6 +31,8 @@
 			}
  
 	</style>
+	<script type="text/javascript" src="base64.js"></script>
+	<script type="text/javascript" src="canvas2image.js"></script>
 	<script type="text/javascript" src="jquery-1.6.4.min.js"></script>
 	<script type="text/javascript">
  
@@ -82,11 +84,9 @@
 			// This is a flag to determine if we using an iPhone.
 			// If not, we want to use the mouse commands, not the
 			// the touch commands.
-			var isIPhone = true; 
-			
-			//(new RegExp( "iPhone", "i" )).test(
-			//	navigator.userAgent
-			//);
+			var isIPhone = (new RegExp( "android", "i" )).test(
+				navigator.userAgent
+			);
  
  
 			// ---------------------------------------------- //
@@ -266,6 +266,21 @@
 			);
  
 		});
+		
+		function saveImg() {
+			var oCanvas = document.getElementById("canvas");
+			bRes = oCanvas.toDataURL("image/png");
+			$.ajax( {
+			type:'Post',
+			url:'http://localhost:6789/save_image',
+			data: { data: bRes },
+			success:function(rdata) {
+			  // Mirar porque ejecuta esta función después de guardar exitosamente la imagen
+ 			  alert(rdata);
+			}
+
+			})
+		}
  
 	</script>
 </head>
@@ -278,7 +293,7 @@
 		height="700" style="position: relative">
 	</canvas>
 
-	<button style="position: absolute; right:143px; bottom:0;">Guardar Imagen</button>
+	<button style="position: absolute; right:143px; bottom:0;" onClick="saveImg(); return false;">Guardar Imagen</button>
  	
  
 </body>

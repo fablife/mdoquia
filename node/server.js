@@ -58,22 +58,23 @@ app.get('/', function(req, res) {
 
 app.post('/save_image', function(req, res) {
   if ('POST' !== req.method) return ;
-  var file = req.files.manda_dibujo;
-  console.log('  uploaded : %s %skb', file.name, file.size / 1024 | 0);
-  var datesuffix = new Date().getTime() + file.name;
+  var base64Data = req.body.data.replace(/^data:image\/png;base64,/,"");
+  var data = new Buffer(base64Data, 'base64');
+  filename = 'imagen.png';
+  console.log('  uploaded : %s %skb', filename, data.length / 1024 | 0);
+  var datesuffix = new Date().getTime() + '-' + filename;
   var file_name = image_path + datesuffix;
   var url = urlprefix + datesuffix; 
-  fs.readFile(req.files.manda_dibujo.path, function(err, data) {
-    fs.writeFile(file_name, data, function (err) {
-        if (err) {
-          res.send("Upload failed!!!");
-          throw err;
-        }
-        console.log("New file saved as: " + file_name + " with url: " + url);
-        var img = new Imagen({path: url});
-        img.save();
-        res.send("Upload OK!");
-    });
+  var path = '/public/images/capturas';
+  fs.writeFile(file_name, data, function (err) {
+      if (err) {
+        res.send("Upload failed!!!");
+        throw err;
+      }
+      console.log("New file saved as: " + file_name + " with url: " + url);
+      var img = new Imagen({path: url});
+      img.save();
+      res.send("Upload OK!");
   });
 });
 
@@ -116,6 +117,25 @@ app.get('/todos_los_textos', function(req,res) {
     });
   });
 });
+
+app.get('/random_data', function(req,res) {
+    // query y luego var aleatorio = random(0, length(array_query))
+    // 
+    if(req.estado == 1){
+	Texto.find({}, function(err, textos) {
+	    res.render('textos', {
+		textos: textos
+	    });
+	});
+    }else{
+	Imagen.find({}, function(err, textos) {
+	    res.render('textos', {
+		textos: textos
+	    });
+	});
+    }
+});
+
 
 // App starts here
 // Only listen on $ node app.js
