@@ -6,7 +6,8 @@ var Schema = mongoose.Schema
 var Texto = new Schema({
   name  : { type: String, default: 'Texto' },
   fecha : { type: Date, default: Date.now },
-  texto : { type: String }
+  texto : { type: String },
+  checked : { type: Boolean , default: false}
 });
 mongoose.model('Texto', Texto);
 

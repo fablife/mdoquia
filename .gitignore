@@ -7,7 +7,7 @@ node/public/images/capturas*
 *.out
 *.pid
 *.gz
-
+*~
 pids
 logs
 results

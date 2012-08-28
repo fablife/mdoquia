@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>iPhone Touch Events With jQuery</title>
+	<title>Dibujo</title>
 	<meta
 		name="viewport"
 		content="width=device-width, user-scalable=no, initial-scale=1"
@@ -14,10 +14,11 @@
 			}
  
 		canvas {
+			position: relative;
 			border: 1px solid #999999 ;
 			-webkit-touch-callout: none ;
 			-webkit-user-select: none ;
-			}
+			}	
  
 		a {
 			background-color: #CCCCCC ;
@@ -29,10 +30,23 @@
 			text-align: center ;
 			text-decoration: none ;
 			}
+			
+
+	button{
+			background-color: #CCCCCC ;
+			border: 1px solid #999999 ;
+			color: #333333 ;
+			display : block;
+			line-height: 40px ;
+			text-align: center ;
+			text-decoration: none ;
+			display:block; 
+			width:400px;
+			height:50px;
+			}
+ 
  
 	</style>
-	<script type="text/javascript" src="base64.js"></script>
-	<script type="text/javascript" src="canvas2image.js"></script>
 	<script type="text/javascript" src="jquery-1.6.4.min.js"></script>
 	<script type="text/javascript">
  
@@ -55,10 +69,34 @@
 			}
 		);
  
- 
+ 		function onDeviceReady()
+		{
+		// do your thing!
+		//navigator.notification.alert("PhoneGap is working")
+	     
+		}	 
 		// When The DOM loads, initialize the scripts.
 		jQuery(function( $ ){
- 
+ 			var canvas = document.getElementById('canvas')
+        	var jCanvas = $(canvas)
+	        var width = $(document).width()-10
+	        var height = $(document).height()-50
+	        
+	        // put canvas in fullscreen
+	        canvas.width = width
+	        canvas.height = height
+	        
+	        
+	        var ctx = canvas.getContext('2d')
+	        
+	        // higth DPI compatible (retina)
+	        if (window.devicePixelRatio) {
+	            jCanvas.attr("width", canvas.width * window.devicePixelRatio)
+	            jCanvas.attr("height", canvas.height * window.devicePixelRatio)
+	            jCanvas.css("width", width)
+	            jCanvas.css("height", height)
+	            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+	        }
 			// Get a refernce to the canvase.
 			var canvas = $( "canvas" );
  
@@ -229,22 +267,6 @@
 			};
  
  
-			// ---------------------------------------------- //
-			// ---------------------------------------------- //
- 
- 
-			// Bind the export link to simply submit the form.
-			exportGraphic.click(
-				function( event ){
-					// Prevent the default behavior.
-					event.preventDefault();
- 
-					// Submit the form.
-					form.submit();
-				}
-			);
- 
- 
 			// Bind the touch start event to the canvas. With
 			// this event, we will be starting a new line. The
 			// touch event is NOT part of the jQuery event object.
@@ -272,11 +294,12 @@
 			bRes = oCanvas.toDataURL("image/png");
 			$.ajax( {
 			type:'Post',
-			url:'http://localhost:6789/save_image',
+			url:'http://192.168.1.7:6789/save_image',
 			data: { data: bRes },
 			success:function(rdata) {
 			  // Mirar porque ejecuta esta función después de guardar exitosamente la imagen
  			  alert(rdata);
+		          window.location = "./index.html"
 			}
 
 			})
@@ -287,13 +310,10 @@
 <body>
  
 	<!--- This is where we draw. --->
-	<canvas
-		id="canvas"
-		width="1200"
-		height="700" style="position: relative">
+	<canvas id="canvas">
 	</canvas>
 
-	<button style="position: absolute; right:143px; bottom:0;" onClick="saveImg(); return false;">Guardar Imagen</button>
+	<button onClick="saveImg(); return false;">Guardar Imagen</button>
  	
  
 </body>

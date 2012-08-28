@@ -6,7 +6,6 @@ var fs = require('fs');
 var app = module.exports = express.createServer();
 app.db = require('./models/models');
 
-
 var publicdir = '/public';
 var urlprefix = '/images/capturas/';
 var image_path = __dirname + publicdir + urlprefix;
@@ -28,7 +27,7 @@ app.configure(function(){
     this.use(express.cookieParser());
     this.use(express.session({secret: 'Eah4tfzGAKhr'}));
     this.use(stylus.middleware({
-	      src: __dirname + '/views'
+	src: __dirname + '/views'
         , dest: __dirname + '/public'
         , compile: compile
     }));
@@ -104,10 +103,12 @@ app.post('/approve_image',function(req,res) {
 
 app.post('/save_text', function(req,res) {
   if ('POST' !== req.method) return ;
-  var texto = new Texto(req.body);
-  texto.save(function(error, _texto) {
+  console.log(req.body.data);
+  var texto = new Texto({ texto : req.body.data });
+    //console.log(texto);
+    texto.save(function(error, _texto) {
     res.send("El texto fue guardado!");
-  });
+    });
 });
 
 app.get('/todos_los_textos', function(req,res) {
@@ -118,20 +119,25 @@ app.get('/todos_los_textos', function(req,res) {
   });
 });
 
+app.get('/visualizacion', function(req,res) {
+    res.render('visualizacion', {
+	//data: data
+    });
+});
+
 app.get('/random_data', function(req,res) {
-    // query y luego var aleatorio = random(0, length(array_query))
-    // 
-    if(req.estado == 1){
-	Texto.find({}, function(err, textos) {
-	    res.render('textos', {
-		textos: textos
-	    });
+    // Cambiar el query por { checked: true }
+    if(req.query.texto == 'true'){
+	Texto.find({ checked: false}, function(err, textos) {
+	    randomnumber = Math.floor(Math.random()*(textos.length-1));
+	    //console.log("textos: " + textos[ randomnumber ] );
+	    res.send(textos[ randomnumber ]);
 	});
-    }else{
-	Imagen.find({}, function(err, textos) {
-	    res.render('textos', {
-		textos: textos
-	    });
+    }else {
+	Imagen.find({ checked: false}, function(err, imagenes) {
+	    randomnumber = Math.floor(Math.random()*(imagenes.length-1));
+	    //console.log("imágenes:" + imagenes[ randomnumber ])
+	    res.send(imagenes[ randomnumber ]);
 	});
     }
 });
