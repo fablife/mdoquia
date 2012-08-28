@@ -1,0 +1,49 @@
+body {
+    margin: 5px 5px 5px 5px ;
+    padding: 0px 0px 0px 0px ;
+}
+
+textarea {
+    font-size: 50px;
+}
+
+canvas {
+    position: relative;
+    border: 1px solid #999999 ;
+    -webkit-touch-callout: none ;
+    -webkit-user-select: none ;
+}	
+
+
+div#botones {
+    display: block;
+    width: 800px;
+    margin: auto;
+}
+
+button{
+    background-color: #CCCCCC ;
+    border: 1px solid #999999 ;
+    color: #333333 ;
+    line-height: 40px ;
+    text-align: center ;
+    text-decoration: none ;
+    display:block; 
+    width:400px;
+    height:50px;
+}
+
+
+
+a {
+    background-color: #CCCCCC ;
+    border: 1px solid #999999 ;
+    color: #333333 ;
+    display : table-cell;
+    line-height: 40px ;
+    text-align: center ;
+    text-decoration: none ;
+    width:350px;
+    height:50px;
+}
+
