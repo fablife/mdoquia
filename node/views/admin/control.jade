@@ -8,8 +8,9 @@
       ul
       each img in imagenes
         li
+          input(type="checkbox",id="#{img.id}",value="#{cnt}")
           img(src="#{img.path}",alt="#{img.id}")
-          input(type="hidden",id="#{img.id}",value="#{cnt}")
           - cnt++
 
 
+  button(onClick="aprueba(); return false;", style="display: block; padding: 4px; ") Aprueba
