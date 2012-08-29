@@ -56,31 +56,30 @@ app.get('/', function(req, res) {
 });
 
 app.post('/save_image', function(req, res) {
-  if ('POST' !== req.method) return ;
-  var base64Data = req.body.data.replace(/^data:image\/png;base64,/,"");
-  var data = new Buffer(base64Data, 'base64');
-  filename = 'imagen.png';
-  console.log('  uploaded : %s %skb', filename, data.length / 1024 | 0);
-  var datesuffix = new Date().getTime() + '-' + filename;
-  var file_name = image_path + datesuffix;
-  var url = urlprefix + datesuffix; 
-  var path = '/public/images/capturas';
-  fs.writeFile(file_name, data, function (err) {
-      if (err) {
-        res.send("Upload failed!!!");
-        throw err;
-      }
-      console.log("New file saved as: " + file_name + " with url: " + url);
-      var img = new Imagen({path: url});
-      img.save();
-      res.send("Upload OK!");
-  });
+    if ('POST' !== req.method) return ;
+    var base64Data = req.body.data.replace(/^data:image\/png;base64,/,"");
+    var data = new Buffer(base64Data, 'base64');
+    filename = 'imagen.png';
+    console.log('  uploaded : %s %skb', filename, data.length / 1024 | 0);
+    var datesuffix = new Date().getTime() + '-' + filename;
+    var file_name = image_path + datesuffix;
+    var url = urlprefix + datesuffix; 
+    var path = '/public/images/capturas';
+    fs.writeFile(file_name, data, function (err) {
+	if (err) {
+            res.send("Upload failed!!!");
+            throw err;
+	}
+	console.log("New file saved as: " + file_name + " with url: " + url);
+	var img = new Imagen({path: url});
+	img.save();
+	res.send("Upload OK!");
+    });
 });
 
 
 app.get('/admin/control', function(req, res) {
- Imagen.find({ checked: false}, function(err, files) {
-    console.log("Cargué " + files.length + " imagenes.");
+ Imagen.find(function(err, files) {
     res.render('admin/control', {
       locals: {
         imagenes: files,
@@ -91,14 +90,16 @@ app.get('/admin/control', function(req, res) {
 });
 
 app.post('/approve_image',function(req,res) {
-  console.log("Approving image with path: " + req.body["id"]);
-  Imagen.update({_id: req.body['id']},{ $set : { checked: true} }, {upsert: true}, function(err, img) {
-    if (err) {
-      res.send(500);
-      console.log(err);
-    }
-    res.send(200);
-    }); 
+    console.log(req.body);
+
+    if(!req.body.checked || req.body.checked == 'false') req.body.checked = false;
+    Imagen.update({_id: req.body['id']}, { $set : { checked: req.body.checked } }, function(err, img) {
+	if (err) {
+	    res.send(500);
+	    console.log(err);
+	}
+	res.send(200);
+    });
 });
 
 app.post('/save_text', function(req,res) {

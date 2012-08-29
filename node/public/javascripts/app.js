@@ -39,17 +39,33 @@ jQuery(document).ready(function($) {
     // 	$('#visible_img')[0].alt=$(".image_list img")[current_image].alt;
 	
     // });
+
+    $('button').click(function(e){
+	e.preventDefault();
+	$(this).blur();
+	aprueba();
+    })
+
+    $('.check').change(function(e) {
+	var img = $(this).attr('id');
+	var checked = $(this).parent().find(':checked');
+	var check = false;
+	if(checked.length) {
+	    check = true;
+	}
+
+	$.post('/approve_image', { id: img, checked: check }, function() {
+	    window.location.reload();
+	})
+    });
+
     function aprueba(){
 	var img_approve = $(':checkbox:checked');
 	img_approve.each(function(){
-	    var img = this.getAttribute('id');
-	    $.ajax({
-            type: "POST",
-            url: "/approve_image",
-            data: { id : img }
-            }).done(function(e) {
+	    var img = $(this).attr('id');
+	    $.post('/approve_image', { id : img }, function() {
 		window.location.reload();
-	    });
+	    })
 	});
     };
 });

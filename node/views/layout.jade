@@ -1,7 +1,7 @@
 !!! 5
 html
   head
-    link(rel= 'stylesheet', href= '/stylesheets/styles.css', type= 'text/css')
+    link(rel= 'stylesheet', href= '/styles.css', type= 'text/css')
     link(rel= 'stylesheet', href= '/stylesheets/jquery.jgrowl.css', type= 'text/css')
     
     title Memorias Digitales - Museo De Antioquia
@@ -13,10 +13,14 @@ html
       .header_area_bottom
 
       .menubar
-      
-      article#main
-        section.content
-          != body
+        ul
+          li
+            a.activo(href='#') Control de Imágenes
+          li
+            a(href='#') Control de Textos
+    article#main
+      section.content
+        != body
 
 #image_view
   #image_area

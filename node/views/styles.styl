@@ -62,11 +62,9 @@ label
 
 input
   display: block
-  //margin: 10px 0
-  //height: 32px
   border: 1px solid black
   //width: 300px
-  float: right
+  // float: right
 
 textarea
   display: inline-block
@@ -86,10 +84,6 @@ select
   margin: 4px 0 20px 
   padding: 20px
 
-header
-  border: 1px solid #edeaec 
-  padding: 20px;
-
 .header_area_top
   background-color: #006577  
   width: 100%
@@ -105,7 +99,17 @@ header
   background-color: #CCCCCC
   width: 100%
   height: 32px
-
+  padding-left: 40px
+  li
+    float: left
+    font-size: 14px
+    a
+      color: #666
+      padding: 8px
+      float: left
+      &.activo
+        background-color: #DDD
+        corner-top(5px)
 .content
   width: 1200px
   margin: auto
@@ -121,14 +125,13 @@ h1
   width: 1165px
 
 .image_list li
-  display: inline
   float: left
 
 .image_list img
   width: 100px
   height: 100px
-  float: left
-  display: inline
+  // float: left
+  // display: inline
 
 .image_list img:hover
   -webkit-box-shadow:0 0 15px #000
@@ -200,3 +203,17 @@ h1
 p#ver_data
   font: 50px 'ChuckFiveRegular';
   margin-top: 70%;
+
+.image_list
+  margin-top: 15px
+  float: left
+  width: 100%
+  h2
+    font-size: 14px
+    padding: 10px 0
+  li
+    margin-right: 10px
+    text-align: center
+    input
+      clear: left
+      margin-left: 45px
