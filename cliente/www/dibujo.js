@@ -242,7 +242,7 @@ function saveImg() {
     bRes = oCanvas.toDataURL("image/png");
     $.ajax( {
 	type:'Post',
-	url:'http://192.168.1.7:6789/save_image',
+	url:'http://192.168.0.100:6789/save_image',
 	data: { data: bRes },
 	success:function(rdata) {
 	    // Mirar porque ejecuta esta función después de guardar exitosamente la imagen
@@ -251,4 +251,8 @@ function saveImg() {
 	}
 
     })
+}
+
+function cancel(){
+    window.location = "./index.html"
 }
