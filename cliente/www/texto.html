@@ -6,56 +6,10 @@
 		name="viewport"
 		content="width=device-width, user-scalable=no, initial-scale=1"
 		/>
-	<style type="text/css">
- 
-		body {
-			margin: 5px 5px 5px 5px ;
-			padding: 0px 0px 0px 0px ;
-			}
- 
-		textarea {
-			font-size: 50px;
-			}
-			
- 		div#botones {
- 			display: block;
- 			width: 800px;
- 			margin: auto;
- 			}
- 		
- 		button{
-			background-color: #CCCCCC ;
-			border: 1px solid #999999 ;
-			color: #333333 ;
-			display : block;
-			line-height: 40px ;
-			text-align: center ;
-			text-decoration: none ;
-			display:block; 
-			width:400px;
-			height:50px;
-			}
- 
- 
- 		
-		a {
-			background-color: #CCCCCC ;
-			border: 1px solid #999999 ;
-			color: #333333 ;
-			display: block ;
-			float: left;
-			height: 40px ;
-			line-height: 40px ;
-			text-align: center ;
-			text-decoration: none ;
-			margin-left: 50px;
-			padding: 5px;
-			}
- 
-	</style>
+	<link type="text/css" href="museo.css" rel="stylesheet">
 	<script type="text/javascript" src="jquery-1.6.4.min.js"></script>
 	<script type="text/javascript">
-	jQuery(function( $ ){
+	  jQuery(function( $ ){
 	  var text_area = $("textarea");
 	  var width = $(document).width()-10;
 	  var height = $(document).height()-50;
@@ -79,10 +33,9 @@
 
 </head>
 <body>
- 	
-	<textarea name="texto"> </textarea>
- <button style="display:block; right:143px; bottom:0;width:400px;height:50px;" onClick="saveText(); return false;">Guardar Texto</button> 
- 	
+  
+  <textarea name="texto"> </textarea>
+  <button style="display:block; right:143px; bottom:0;width:400px;height:50px;" onClick="saveText(); return false;">Guardar Texto</button> 	
 	
 </body>
 </html>

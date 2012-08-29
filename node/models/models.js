@@ -12,6 +12,8 @@ var Texto = new Schema({
 mongoose.model('Texto', Texto);
 
 var Imagen = new Schema({
+  name  : { type: String, default: 'Imagen' },
+  fecha : { type: Date, default: Date.now },
   path  : { type: String },
   checked : { type: Boolean , default: false}
 });
