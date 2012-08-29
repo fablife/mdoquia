@@ -90,9 +90,31 @@ app.get('/admin/control', function(req, res) {
   });
 });
 
+app.get('/admin/textos', function(req, res) {
+ Texto.find({ checked: false}, function(err, files) {
+    console.log("Cargué " + files.length + " textos.");
+    res.render('admin/textos', {
+      locals: {
+        textos: files,
+      }
+    });
+  });
+});
+
 app.post('/approve_image',function(req,res) {
   console.log("Approving image with path: " + req.body["id"]);
   Imagen.update({_id: req.body['id']},{ $set : { checked: true} }, {upsert: true}, function(err, img) {
+    if (err) {
+      res.send(500);
+      console.log(err);
+    }
+    res.send(200);
+    }); 
+});
+
+app.post('/approve_text',function(req,res) {
+  console.log("Approving text with id: " + req.body["id"]);
+  Imagen.update({_id: req.body['id']},{ $set : { checked: true} }, function(err, img) {
     if (err) {
       res.send(500);
       console.log(err);
@@ -121,14 +143,14 @@ app.get('/todos_los_textos', function(req,res) {
 
 app.get('/visualizacion', function(req,res) {
     res.render('visualizacion', {
-	//data: data
+	layout: false//data: data
     });
 });
 
 app.get('/random_data', function(req,res) {
     // Cambiar el query por { checked: true }
     if(req.query.texto == 'true'){
-	Texto.find({ checked: false}, function(err, textos) {
+	Texto.find({ checked: true }, function(err, textos) {
 	    randomnumber = Math.floor(Math.random()*(textos.length-1));
 	    //console.log("textos: " + textos[ randomnumber ] );
 	    res.send(textos[ randomnumber ]);

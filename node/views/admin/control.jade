@@ -9,8 +9,9 @@
       each img in imagenes
         li
           input(type="checkbox",id="#{img.id}",value="#{cnt}")
-          img(src="#{img.path}",alt="#{img.id}")
+          a.grouped_elements(href="#{img.path}")
+            img(src="#{img.path}",alt="#{img.id}")
           - cnt++
 
 
-  button(onClick="aprueba(); return false;", style="display: block; padding: 4px; ") Aprueba
+  button(style="display: block; padding: 4px; ") Aprueba
