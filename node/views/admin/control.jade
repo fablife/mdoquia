@@ -1,6 +1,6 @@
 #wrapper  
   .content
-    h1 Control de imagenes
+    h1 Control de im&aacute;genes
 
     .image_list.approved
       h2 Imágenes Aprobadas
@@ -8,10 +8,9 @@
         each img in imagenes
           -if(img.checked) 
             li
-              img(src="#{img.path}", alt="#{img.id}")
+              a.grouped_elements(href="#{img.path}")
+                img(src="#{img.path}", alt="#{img.id}")
               input.check(type="checkbox", id="#{img.id}", checked='checked')
-
-      // button(style="display: block; padding: 4px;") Aprueba
 
     .image_list.not-approved
       h2 Imágenes Sin Aprobar
@@ -19,5 +18,6 @@
         each img in imagenes
           -if(!img.checked) 
             li
-              img(src="#{img.path}", alt="#{img.id}")
+              a.grouped_elements(href="#{img.path}")
+                img(src="#{img.path}", alt="#{img.id}")
               input.check(type="checkbox", id="#{img.id}")
