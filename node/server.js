@@ -52,7 +52,7 @@ var Texto = mongoose.model('Texto', models.Texto);
 var Imagen = mongoose.model('Imagen', models.Imagen);
 
 app.get('/', function(req, res) {
-    res.render('index');
+    res.redirect('/admin/control');
 });
 
 app.post('/save_image', function(req, res) {
@@ -79,25 +79,27 @@ app.post('/save_image', function(req, res) {
 
 
 app.get('/admin/control', function(req, res) {
- Imagen.find(function(err, files) {
-    res.render('admin/control', {
-      locals: {
-        imagenes: files,
-        image_dir: image_path
-      }
+    Imagen.find(function(err, files) {
+	res.render('admin/control', {
+	    locals: {
+		imagenes: files,
+		image_dir: image_path,
+		pagina: 'Imagen'
+	    }
+	});
     });
-  });
 });
 
 app.get('/admin/textos', function(req, res) {
- Texto.find({ checked: false}, function(err, files) {
-    console.log("Cargué " + files.length + " textos.");
-    res.render('admin/textos', {
-      locals: {
-        textos: files,
-      }
+    Texto.find(function(err, files) {
+	console.log("Cargué " + files.length + " textos.");
+	res.render('admin/textos', {
+	    locals: {
+		textos: files,
+		pagina: 'Texto'
+	    }
+	});
     });
-  });
 });
 
 app.post('/approve_image',function(req,res) {
