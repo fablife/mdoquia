@@ -1,16 +1,10 @@
 #wrapper
-  
   .content
     h1 Control de Textos
 
-    .image_list
-      -var cnt=0
+    .texto_list
       ul
-      each txt in textos
-        li
-          input(type="checkbox",id="#{txt.id}",value="#{cnt}")
-          p "#{txt.texto}"
-          - cnt++
-
-
-  button(style="display: block; padding: 4px; ") Aprueba
+        each txt in textos
+          li
+            input(type="checkbox", id="#{txt.id}")
+            p #{txt.texto}
