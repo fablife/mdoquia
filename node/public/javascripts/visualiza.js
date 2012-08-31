@@ -1,7 +1,8 @@
 jQuery(document).ready(function($) {
     var b_texto = false;
     var viz_data = {};
-    setInterval(function(){
+
+    function render() {
 	b_texto = !b_texto;
 	console.log(b_texto);
 	$.ajax( {
@@ -22,6 +23,11 @@ jQuery(document).ready(function($) {
 	    $("img#ver_data").hide();
 	    $("p#ver_data").show().text('\" '+viz_data.texto+' \"');
 	}
+    }
+
+    render();
+    setInterval(function(){
+	render()
     }, 10000);
 
 });
