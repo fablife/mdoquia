@@ -1,10 +1,22 @@
-#wrapper
+#wrapper  
   .content
     h1 Control de Textos
 
-    .texto_list
+    .text_list.approved
+      h2 Textos Aprobadas
       ul
         each txt in textos
-          li
-            input(type="checkbox", id="#{txt.id}")
-            p #{txt.texto}
+          -if(txt.checked) 
+            li
+              p #{txt.texto}
+              input.check_txt(type="checkbox", id="#{txt.id}", checked='checked')
+
+    .text_list.not-approved
+      h2 Textos Sin Aprobar
+      ul
+        each txt in textos
+          -if(!txt.checked) 
+            li
+              p #{txt.texto}
+              input.check_txt(type="checkbox", id="#{txt.id}")
+

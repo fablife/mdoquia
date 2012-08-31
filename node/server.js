@@ -59,7 +59,7 @@ app.post('/save_image', function(req, res) {
   if ('POST' !== req.method) return ;
   var base64Data = req.body.data.replace(/^data:image\/png;base64,/,"");
   var data = new Buffer(base64Data, 'base64');
-  console.log(base64Data);
+  //console.log(base64Data);
   filename = 'imagen.png';
   console.log('  uploaded : %s %skb', filename, data.length / 1024 | 0);
   var datesuffix = new Date().getTime() + '-' + filename;
@@ -116,7 +116,7 @@ app.post('/approve_image',function(req,res) {
 
 app.post('/approve_text',function(req,res) {
   console.log("Approving text with id: " + req.body["id"]);
-  Imagen.update({_id: req.body['id']},{ $set : { checked: true} }, function(err, img) {
+  Texto.update({_id: req.body['id']},{ $set : { checked: true} }, function(err, txt) {
     if (err) {
       res.send(500);
       console.log(err);
@@ -146,7 +146,7 @@ app.get('/todos_los_textos', function(req,res) {
 
 app.get('/visualizacion', function(req,res) {
     res.render('visualizacion', {
-	layout: false//data: data
+	layout: false
     });
 });
 

@@ -10,7 +10,7 @@
             li
               a.grouped_elements(href="#{img.path}")
                 img(src="#{img.path}", alt="#{img.id}")
-              input.check(type="checkbox", id="#{img.id}", checked='checked')
+              input.check_img(type="checkbox", id="#{img.id}", checked='checked')
 
     .image_list.not-approved
       h2 Imágenes Sin Aprobar
@@ -20,4 +20,5 @@
             li
               a.grouped_elements(href="#{img.path}")
                 img(src="#{img.path}", alt="#{img.id}")
-              input.check(type="checkbox", id="#{img.id}")
+              input.check_img(type="checkbox", id="#{img.id}")
+

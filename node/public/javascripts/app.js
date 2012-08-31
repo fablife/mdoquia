@@ -10,13 +10,7 @@ jQuery(document).ready(function($) {
 	'overlayShow':true
     });
 
-    $('button').click(function(e){
-	e.preventDefault();
-	$(this).blur();
-	aprueba();
-    })
-
-    $('.check').change(function(e) {
+    $('.check_img').change(function(e) {
 	var img = $(this).attr('id');
 	var checked = $(this).parent().find(':checked');
 	var check = false;
@@ -27,9 +21,22 @@ jQuery(document).ready(function($) {
 	$.post('/approve_image', { id: img, checked: check }, function() {
 	    window.location.reload();
 	})
-    });
+    })
 
-    function aprueba(){
+    $('.check_txt').change(function(e) {
+	var txt = $(this).attr('id');
+	var checked = $(this).parent().find(':checked');
+	var check = false;
+	if(checked.length) {
+	    check = true;
+	}
+
+	$.post('/approve_text', { id: txt, checked: check }, function() {
+	    window.location.reload();
+	})
+    })
+
+    function aprueba_img(){
 	var img_approve = $(':checkbox:checked');
 	img_approve.each(function(){
 	    var img = $(this).attr('id');
@@ -38,4 +45,15 @@ jQuery(document).ready(function($) {
 	    })
 	});
     };
+
+    function aprueba_txt(){
+	var txt_approve = $(':checkbox:checked');
+	txt_approve.each(function(){
+	    var txt = $(this).attr('id');
+	    $.post('/approve_text', { id : img }, function() {
+		window.location.reload();
+	    })
+	});
+    };
+
 });
