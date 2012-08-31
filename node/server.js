@@ -151,6 +151,7 @@ app.get('/visualizacion', function(req,res) {
 });
 
 app.get('/random_data', function(req,res) {
+    console.log('oeoeoeoe');
     // Cambiar el query por { checked: true }
     if(req.query.texto == 'true'){
 	Texto.find({ checked: true }, function(err, textos) {
@@ -159,7 +160,7 @@ app.get('/random_data', function(req,res) {
 	    res.send(textos[ randomnumber ]);
 	});
     }else {
-	Imagen.find({ checked: false}, function(err, imagenes) {
+	Imagen.find({ checked: true }, function(err, imagenes) {
 	    randomnumber = Math.floor(Math.random()*(imagenes.length-1));
 	    //console.log("imágenes:" + imagenes[ randomnumber ])
 	    res.send(imagenes[ randomnumber ]);
