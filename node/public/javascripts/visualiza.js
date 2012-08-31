@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
 	console.log(b_texto);
 	$.ajax( {
 	    type:'Get',
-	    url:'http://localhost:6789/random_data/',
+	    url:'http://173.230.141.159:6789/random_data/',
 	    data: { texto: b_texto },
 	    success:function(rdata) {
 		viz_data = rdata;
