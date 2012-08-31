@@ -202,3 +202,10 @@ p#ver_data {
   clear: left;
   margin-left: 45px;
 }
+.texto_list li {
+  clear: left;
+}
+.texto_list li input,
+.texto_list li p {
+  float: left;
+}

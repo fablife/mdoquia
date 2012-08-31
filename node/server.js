@@ -57,10 +57,10 @@ app.get('/', function(req, res) {
 
 app.post('/save_image', function(req, res) {
   if ('POST' !== req.method) return ;
-  var base64Data = req.body.data.replace(/^data:image\/jpeg;base64,/,"");
+  var base64Data = req.body.data.replace(/^data:image\/png;base64,/,"");
   var data = new Buffer(base64Data, 'base64');
   console.log(base64Data);
-  filename = 'imagen.jpg';
+  filename = 'imagen.png';
   console.log('  uploaded : %s %skb', filename, data.length / 1024 | 0);
   var datesuffix = new Date().getTime() + '-' + filename;
   var file_name = image_path + datesuffix;
@@ -74,7 +74,7 @@ app.post('/save_image', function(req, res) {
       console.log("New file saved as: " + file_name + " with url: " + url);
       var img = new Imagen({path: url});
       img.save();
-      res.send("Upload OK!");
+      res.send("Imagen guardada!");
   });
 });
 
@@ -138,6 +138,7 @@ app.post('/save_text', function(req,res) {
 app.get('/todos_los_textos', function(req,res) {
   Texto.find({}, function(err, textos) {
     res.render('textos', {
+      pagina: 'Todos los textos',
       textos: textos
     });
   });
