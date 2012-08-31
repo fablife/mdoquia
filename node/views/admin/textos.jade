@@ -3,13 +3,13 @@
     h1 Control de Textos
 
     .text_list.approved
-      h2 Textos Aprobadas
+      h2 Textos Aprobados
       ul
         each txt in textos
           -if(txt.checked) 
             li
-              p #{txt.texto}
               input.check_txt(type="checkbox", id="#{txt.id}", checked='checked')
+              p #{txt.texto}
 
     .text_list.not-approved
       h2 Textos Sin Aprobar
@@ -17,6 +17,6 @@
         each txt in textos
           -if(!txt.checked) 
             li
-              p #{txt.texto}
               input.check_txt(type="checkbox", id="#{txt.id}")
+              p #{txt.texto}
 

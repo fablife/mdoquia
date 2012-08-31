@@ -104,25 +104,25 @@ app.get('/admin/textos', function(req, res) {
 });
 
 app.post('/approve_image',function(req,res) {
-  console.log("Approving image with path: " + req.body["id"]);
-  Imagen.update({_id: req.body['id']},{ $set : { checked: true} }, {upsert: true}, function(err, img) {
-    if (err) {
-      res.send(500);
-      console.log(err);
-    }
-    res.send(200);
-    }); 
+    if(!req.body.checked || req.body.checked == 'false') req.body.checked = false;
+    Imagen.update({_id: req.body['id']}, { $set : { checked: req.body.checked } }, function(err, img) {
+	if (err) {
+	    res.send(500);
+	    console.log(err);
+	}
+	res.send(200);
+    });
 });
 
 app.post('/approve_text',function(req,res) {
-  console.log("Approving text with id: " + req.body["id"]);
-  Texto.update({_id: req.body['id']},{ $set : { checked: true} }, function(err, txt) {
-    if (err) {
-      res.send(500);
-      console.log(err);
-    }
-    res.send(200);
-    }); 
+    if(!req.body.checked || req.body.checked == 'false') req.body.checked = false;
+    Texto.update({_id: req.body['id']}, { $set : { checked: req.body.checked } }, function(err, img) {
+	if (err) {
+	    res.send(500);
+	    console.log(err);
+	}
+	res.send(200);
+    });
 });
 
 app.post('/save_text', function(req,res) {

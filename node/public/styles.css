@@ -26,10 +26,6 @@ label {
 .evaluacion * {
   vertical-align: middle;
 }
-input {
-  display: block;
-  border: 1px solid #000;
-}
 textarea {
   display: inline-block;
   margin: 10px 0;
@@ -92,6 +88,8 @@ select {
 .content {
   width: 1200px;
   margin: auto;
+  float: left;
+  padding-bottom: 80px;
 }
 h1 {
   color: #006577;
@@ -190,6 +188,9 @@ p#ver_data {
   float: left;
   width: 100%;
 }
+.image_list input {
+  display: block;
+}
 .image_list h2 {
   font-size: 14px;
   padding: 10px 0;
@@ -202,10 +203,27 @@ p#ver_data {
   clear: left;
   margin-left: 45px;
 }
-.texto_list li {
-  clear: left;
+.text_list {
+  margin-top: 15px;
+  float: left;
+  width: 100%;
 }
-.texto_list li input,
-.texto_list li p {
+.text_list h2 {
+  font-size: 14px;
+  padding: 10px 0;
+}
+.text_list li {
+  clear: left;
+  float: left;
+  margin-right: 10px;
+  padding: 10px 0;
+}
+.text_list li input {
+  clear: left;
+  margin-top: 4px;
+  margin-right: 5px;
+}
+.text_list li input,
+.text_list li p {
   float: left;
 }
