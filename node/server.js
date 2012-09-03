@@ -46,7 +46,7 @@ app.configure('production', function(){
 });
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://192.168.0.147/mdoquia');
+mongoose.connect('mongodb://localhost/mdoquia');
 var models = require('./models/models');
 var Texto = mongoose.model('Texto', models.Texto);
 var Imagen = mongoose.model('Imagen', models.Imagen);
