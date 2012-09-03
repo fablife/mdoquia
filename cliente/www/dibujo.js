@@ -1,3 +1,18 @@
+//var tdu = HTMLCanvasElement.prototype.toDataURL;
+//HTMLCanvasElement.prototype.toDataURL = function(type)
+//{
+//	var res = tdu.apply(this,arguments);
+//	//If toDataURL fails then we improvise
+//	if(res.substr(0,6) == "data:,")
+//	{
+//		var encoder = new JPEGEncoder(80);
+//		alert("Encoder");
+//		alert(encoder);
+//		return encoder.encode(this.getContext("2d").getImageData(0,0,this.width,this.height), 90);
+//	}
+//	else return res;
+//}
+
 // When the window has loaded, scroll to the top of the
 // visible document.
 jQuery( window ).load(
@@ -27,8 +42,8 @@ function onDeviceReady()
 jQuery(function( $ ){
     var canvas = document.getElementById('canvas')
     var jCanvas = $(canvas)
-    var width = $(document).width()-10
-    var height = $(document).height()-50
+    var width = $(document).width()-10;
+    var height = $(document).height()-80;
     
     // put canvas in fullscreen
     canvas.width = width
@@ -240,12 +255,12 @@ jQuery(function( $ ){
 function saveImg() {
     var oCanvas = document.getElementById("canvas");
     bRes = oCanvas.toDataURL("image/png");
+    //alert(bRes);
     $.ajax( {
 	type:'Post',
-	url:'http://192.168.0.100:6789/save_image',
+	url:'http://192.168.0.147:6789/save_image',
 	data: { data: bRes },
 	success:function(rdata) {
-	    // Mirar porque ejecuta esta función después de guardar exitosamente la imagen
 	    alert(rdata);
 	    window.location = "./index.html"
 	}

@@ -9,19 +9,13 @@
 	<link type="text/css" href="museo.css" rel="stylesheet">
 	<script type="text/javascript" src="jquery-1.6.4.min.js"></script>
 	<script type="text/javascript">
-	  <!-- jQuery(function( $ ){ -->
-	  <!-- var text_area = $("textarea"); -->
-	  <!-- var width = $(document).width()-10; -->
-	  <!-- var height = $(document).height()-50; -->
-	  <!-- text_area.width(width); -->
-	  <!-- text_area.height(height); -->
-	  <!-- }); -->
 	  
 	  function saveText() {
 	  var texto = $("textarea").val();
+	  if(!$.trim(texto)) return;
 	  $.ajax( {
 	  type:'Post',
-	  url:'http://192.168.0.100:6789/save_text',
+	  url:'http://192.168.0.147:6789/save_text',
 	  data: { data: texto },
 	  success:function(rdata) {
  	  alert(rdata);
@@ -40,7 +34,7 @@
 <body>
   
   	<textarea name="texto"></textarea>
-  	<div id="botones">	
+  	<div id="botinternos">	
   	<button onClick="saveText(); return false;">Guardar Texto</button> 	 
   	<button onClick="cancel(); return false;">Cancelar</button> 	
 	</div>

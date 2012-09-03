@@ -5,7 +5,7 @@ body {
 
 textarea {
     font-size: 50px;
-    width: 100%;
+    width: 99%;
 }
 
 canvas {
@@ -16,10 +16,14 @@ canvas {
 }	
 
 
+div#botinternos {
+    display: table;
+    margin: auto;
+}
+
 div#botones {
     display: table;
-    width: 800px;
-    margin: auto;
+    margin: 250px auto;
 }
 
 button{
@@ -30,7 +34,7 @@ button{
     text-align: center ;
     text-decoration: none ;
     display:inline-block; 
-    width:400px;
+    width:300px;
     height:50px;
 }
 
@@ -44,7 +48,7 @@ a {
     line-height: 40px ;
     text-align: center ;
     text-decoration: none ;
-    width:350px;
+    width:300px;
     height:50px;
 }
 
