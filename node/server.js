@@ -46,7 +46,7 @@ app.configure('production', function(){
 });
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mdoquia');
+mongoose.connect('mongodb://localhost:26017/mdoquia');
 var models = require('./models/models');
 var Texto = mongoose.model('Texto', models.Texto);
 var Imagen = mongoose.model('Imagen', models.Imagen);
@@ -166,6 +166,12 @@ app.get('/random_data', function(req,res) {
 	    res.send(imagenes[ randomnumber ]);
 	});
     }
+});
+
+app.del('/imagenes/:imagen_id', function(req,res) {
+    Imagen.remove({ _id: req.params.imagen_id }, function() {
+        res.send(200);
+    });
 });
 
 

@@ -7,18 +7,19 @@
       ul
         each img in imagenes
           -if(img.checked) 
-            li
+            li.imagen-item
               a.grouped_elements(href="#{img.path}")
-                img(src="#{img.path}", alt="#{img.id}")
-              input.check_img(type="checkbox", id="#{img.id}", checked='checked')
+                img(src="#{img.path}", alt="#{img._id}")
+              input.check_img(type="checkbox", id="#{img._id}", checked='checked')
 
     .image_list.not-approved
       h2 Imágenes Sin Aprobar
       ul
         each img in imagenes
           -if(!img.checked) 
-            li
+            li.imagen-item(id='#{img._id}')
               a.grouped_elements(href="#{img.path}")
-                img(src="#{img.path}", alt="#{img.id}")
-              input.check_img(type="checkbox", id="#{img.id}")
+                img(src="#{img.path}")
+              input.check_img(type="checkbox", id="#{img._id}")
+              a.borrar(href='#') Borrar
 
